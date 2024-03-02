@@ -1,0 +1,8 @@
+[submodule "themes/butterfly"]
+	path = themes/butterfly
+	url = git@github.com:jerryc127/hexo-theme-butterfly.git
+	branch = master
+[submodule "source/_posts"]
+	path = source/_posts
+	url = git@github.com:Anthony6075/posts.git
+	branch = main
