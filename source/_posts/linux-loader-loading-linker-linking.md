@@ -48,4 +48,4 @@ ld.so，ld-linux.so，/lib/ld-linux.so.1，/lib/ld-linux.so.2，/lib64/ld-linux-
 
     2.4 /etc/ld.so.cache
 
-    2.5 /lib，/usr/lib，/lib64，/usr/lib64 
+    2.5 /lib，/usr/lib，/lib64，/usr/lib64 (还可能包括/lib/x86_64-linux-gnu)
