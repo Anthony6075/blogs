@@ -1,5 +1,7 @@
 ---
 title: Linux加载器、加载、动态链接器与动态链接
+categories:
+- computer_science
 tags:
 - linux
 - loader

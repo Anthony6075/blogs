@@ -1,5 +1,7 @@
 ---
 title: Linux nm命令常见用法
+categories:
+- computer_science
 tags:
 - linux
 - shell

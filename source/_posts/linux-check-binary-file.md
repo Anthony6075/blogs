@@ -1,5 +1,7 @@
 ---
 title: Linux查看二进制文件内容
+categories:
+- computer_science
 tags:
 - linux
 - shell
