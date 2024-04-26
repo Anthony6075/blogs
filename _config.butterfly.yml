@@ -644,6 +644,11 @@ text_align_justify: false
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
 background: url(/images/wallpaper.png)
 
+# Sakura falling (背景是否有樱花飘落)
+sakura:
+  enable: true
+  icon: /images/sakura.png
+
 # Footer Background
 footer_bg: false
 
@@ -918,6 +923,7 @@ inject:
     - <link rel="stylesheet" href="/css/fishes.css">
     - <script src="/js/jquery.min.js"></script>
     - <script src="/js/fishes.js"></script>
+    - <script src="/js/sakura.js"></script>
     # - <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     # - <script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script>
 

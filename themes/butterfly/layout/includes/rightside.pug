@@ -1,4 +1,5 @@
-- const { readmode, translate, darkmode, aside, chat_btn } = theme
+- const { readmode, translate, darkmode, aside, chat_btn, sakura } = theme
+- var top_img_404 = theme.error_404.background || theme.default_top_img
 mixin rightsideItem(array)
   each item in array
     case item
@@ -29,10 +30,13 @@ mixin rightsideItem(array)
         if commentsJsLoad
           a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments
+      when 'sakura'
+        button#sakura-btn(type="button" title=_p("rightside.sakura_title") sakura-falling=`${sakura.enable}` onclick="toggle_sakura()")
+          img#sakura-icon.fas.fa-sakura(src=url_for(sakura.icon) alt='sakura' style='max-height:100%; max-width:100%; padding: 8px;')
 
 #rightside
   - const { enable, hide, show } = theme.rightside_item_order
-  - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside']
+  - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside', 'sakura']
   - const showArray = enable ? show && show.split(',') : ['toc','chat','comment']
 
   
