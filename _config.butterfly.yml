@@ -40,21 +40,21 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /images/vscode.jpg
+favicon: /img/vscode.jpg
 
 # Avatar (頭像)
 avatar:
-  img: /images/vscode.jpg
+  img: /img/vscode.jpg
   effect: false
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page
-index_img: /images/wallpaper.png
+index_img: /img/wallpaper.png
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: /images/top_image.png
+default_top_img: /img/top_image.png
 
 # The banner image of archive page
 archive_img:
@@ -642,12 +642,12 @@ text_align_justify: false
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(/images/wallpaper.png)
+background: url(/img/wallpaper.png)
 
 # Sakura falling (背景是否有樱花飘落)
 sakura:
   enable: true
-  icon: /images/sakura.png
+  icon: /img/sakura.png
 
 # Footer Background
 footer_bg: false
