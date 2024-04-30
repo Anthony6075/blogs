@@ -87,13 +87,17 @@ gdb <executable_file_path> <coredump_file_path>
 
 运行程序，其中`run`的缩写为`r`，`start`会在main函数开始处暂停
 
-#### 2. `break [LOCATION] [if CONDITION]`
+#### 2. `break [LOCATION] [thread THREAD_NUM] [if CONDITION]`
 
 缩写为`b`，设置断点，可以使用文件名和行号，也可以使用函数名
 
 - 不指定`[LOCATION]`的话断点打到正要执行的那一行
 
+- `[thread THREAD_NUM]`用于限制只有特定线程hit这个断点时程序才会暂停
+
 - `if`子句用来指定条件断点，只有在`CONDITION`为真时断点才会触发
+
+- `tbreak`命令类似于`break`，只是用来设置临时断点，在第一次hit之后GDB就会自动删除它
 
 #### 3. `continue`
 
@@ -171,9 +175,9 @@ ctrl+L或者`shell clear`
 
 - 可以使用`show listsize`或者`set listsize <size>`查看或修改listsize，默认为10行
 
-#### 16. `thread`
+#### 16. `thread <THREAD_NUM>`
 
-缩写为`t`，切换线程
+缩写为`t`，切换到线程`<THREAD_NUM>`
 
 #### 17. `until LINE_SPEC`
 
@@ -240,7 +244,82 @@ ctrl+L或者`shell clear`
 
 在退出时保存命令历史，可以写入`~/.gdbinit`文件以默认启用命令历史保存
 
-# 5. 回退执行
+#### 29. `pipe`
+
+缩写为`|`，将gdb命令的输出重定向到一个shell命令，使用方式：
+
+`| [COMMAND] | SHELL_COMMAND`或者`pipe [COMMAND] | SHELL_COMMAND`
+
+#### 30. `commands [BREAK_NUM]`
+
+设定在指定断点hit时需要执行的命令
+
+- 无`BREAK_NUM`参数时，默认使用最后设置的断点(即`$bpnum`)
+
+- 如需清空上次`commands`的设置，只需再次调用`commands`并传入空的命令
+
+- 命令第一行输入`silent`可以使该断点hit时不打印输出
+
+#### 31. `ignore <BREAK_NUM> <COUNT>`
+
+忽略断点`BREAK_NUM`接下来的`COUNT`次hit
+
+# 5. 调试多线程程序
+
+## 5.1 All-Stop Mode
+
+这是GDB的默认模式。
+
+当一个线程stop时(比如因为hit断点)，所有线程都stop。
+
+类似地，当继续执行这个线程时(比如使用`step`或者`next`命令)，所有其他线程也会恢复执行，但它们不受当前线程的`step`或者`next`命令控制而自由执行(因为线程调度依赖kernel，而不受GDB控制)，因此可能执行任意条语句。而且当这些其他线程遇到断点时会导致GDB发生自动线程切换，此时原线程的`step`或者`next`命令甚至可能还没执行完。
+
+### 5.1.1 锁住OS scheduler
+
+这是为了在恢复执行时只允许一个线程运行。
+
+scheduler锁定模式有多种，使用命令`set scheduler-locking <mode>`设置，`show scheduler-locking`获取。
+
+可用的模式有：
+
+- `off` 无锁定，任意线程可以任意运行。
+
+- `on` 只有当前线程可以运行，其他线程依然stop。
+
+- `step` 当单步执行时效果类似`on`，使用其他执行命令(如`continue`, `until`, `finish`)时类似`off`。(由于机器不支持此模式，未测试文档中的"单步执行"是不是指`step`和`next`命令)
+
+- `replay` (默认)在replay模式时类似于`on`，在record模式和正常执行时类似`off`。
+
+## 5.2 常用命令
+
+- `p $_thread`，打印当前线程号
+
+- `info threads`或者缩写为`i th`，查看线程信息
+
+- `thread [THREAD_NUM]`或者缩写为`t [THREAD_NUM]`，切换线程
+
+# 6. 方便变量(Convenience Variables)
+
+## 6.1 基本介绍
+
+- 形式为以`$`开头的名字(以`$`开头的数字不是)
+
+- 无固定类型，甚至可以是结构体或者数组
+
+## 6.2 赋值
+
+使用`set`命令，如`set $foo = *object_ptr`
+
+## 6.3 使用示例
+
+不断使用回车遍历数组：
+
+```gdb
+set $i = 0
+p arr[$i++]
+```
+
+# 7. 回退执行
 
 使用命令`record`，`reverse-next`，`reverse-step`，`reverse-continue`，`reverse-finish`等等
 
@@ -290,7 +369,11 @@ GDB的tui模式不支持源码窗口和命令窗口垂直分屏，因此使用CG
 
 在shell中输入`cgdb`启动程序
 
-调用方式类似GDB: `cgdb [cgdb options] [--] [gdb options]`
+调用方式类似GDB: 
+
+```bash
+cgdb [cgdb options] [--] [gdb options]
+```
 
 #### 2. 退出
 
@@ -321,4 +404,18 @@ CGDB的操作类似vim，按`ESC`键进入源代码窗口，按`i`进入GDB窗�
 ### 6.2.3 注意
 
 - 目前最新版为0.8.0，没有发正式版
+
+# 7. 其他
+
+## 7.1 获取目标文件的编译flags
+
+为查看某个目标文件编译时是否启用了优化或者携带调试信息(debuginfo)
+
+使用命令`readelf -w <object_file> | grep producer | head -1`查看使用的编译器和编译flags
+
+检查flags里是否有`-O`或者`-g`即可
+
+## 7.2 术语inferior
+
+inferior在GDB里基本等同于进程，它可以包含多个线程
 
