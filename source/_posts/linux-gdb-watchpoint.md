@@ -35,7 +35,7 @@ GDB会尽可能创建hardware watchpoint。
 
 # 3. 创建watchpoint
 
-```gdb
+```
 watch [-l|-location] expr [thread thread-id]
 ```
 

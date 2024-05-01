@@ -11,7 +11,7 @@ tags:
 
 # 1. All-Stop Mode
 
-这是GDB的默认模式(共两个模式，另一个为Not-Stop Mode)。
+这是GDB的默认模式(共两个模式，另一个为Non-Stop Mode)。
 
 当一个线程stop时(比如因为hit断点)，所有线程都stop。
 
@@ -31,7 +31,7 @@ scheduler锁定模式有多种，使用命令`set scheduler-locking <mode>`设�
 
 - `step` 当单步执行时效果类似`on`，使用其他执行命令(如`continue`, `until`, `finish`)时类似`off`。(由于机器不支持此模式，未测试文档中的"单步执行"是不是指`step`和`next`命令)
 
-- `replay` (默认)在replay模式时类似于`on`，在record模式和正常执行时类似`off`。
+- `replay` (默认模式)在replay模式时类似于`on`，在record模式和正常执行时类似`off`。
 
 # 2. libthread_db
 
