@@ -17,4 +17,12 @@ tags:
 
 glibc的string相关函数会使用AVX优化的版本，要想使用GDB的回退执行可能需要重新编译glibc或者修改动态链接器使它不要使用AVX版本的函数
 
-参考[stackoverflow](https://stackoverflow.com/questions/42451492/disable-avx-optimized-functions-in-glibc-ld-hwcap-mask-etc-ld-so-nohwcap-for)
+参考：
+
+1. GDB文档
+
+    1. [Running programs backward](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Reverse-Execution.html#Reverse-Execution)
+
+    1. [Recording Inferior’s Execution and Replaying It](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Process-Record-and-Replay.html#Process-Record-and-Replay)
+
+1. [stackoverflow](https://stackoverflow.com/questions/42451492/disable-avx-optimized-functions-in-glibc-ld-hwcap-mask-etc-ld-so-nohwcap-for)
