@@ -1,5 +1,5 @@
 ---
-title: Linux gdb常用命令
+title: Linux GDB 常用命令
 categories:
 - computer_science
 tags:
@@ -54,6 +54,8 @@ $ gdb
 Reading symbols from myprogram...
 (gdb) 
 ```
+
+inferior在GDB里基本等同于进程，它可以包含多个线程
 
 ## 3.2 `-q`或者`--quiet`
 
@@ -151,6 +153,8 @@ gdb <executable_file_path> <coredump_file_path>
 
 - `info shared`，查看加载的动态链接库
 
+- `info display`，查看自动展示表达式
+
 #### 13. `shell`
 
 将这一行的剩余部分当做shell命令执行，无其余部分时会启动一个shell
@@ -198,11 +202,13 @@ ctrl+L或者`shell clear`
 #### 20. `display [EXP]`
 
 - 在每次程序暂停时自动打印表达式`EXP`的值
+
 - 不带参数时，列出当前所有的自动打印表达式
 
 #### 21. `undisplay [NUM]`
 
 - 删除`NUM`标识的自动打印表达式
+
 - 不带参数时，删除所有自动打印表达式
 
 #### 22. `disable [BREAKPOINT_NUM]`
@@ -264,150 +270,9 @@ ctrl+L或者`shell clear`
 
 忽略断点`BREAK_NUM`接下来的`COUNT`次hit
 
-# 5. 调试多线程程序
+# 5. 其他
 
-## 5.1 All-Stop Mode
-
-这是GDB的默认模式。
-
-当一个线程stop时(比如因为hit断点)，所有线程都stop。
-
-类似地，当继续执行这个线程时(比如使用`step`或者`next`命令)，所有其他线程也会恢复执行，但它们不受当前线程的`step`或者`next`命令控制而自由执行(因为线程调度依赖kernel，而不受GDB控制)，因此可能执行任意条语句。而且当这些其他线程遇到断点时会导致GDB发生自动线程切换，此时原线程的`step`或者`next`命令甚至可能还没执行完。
-
-### 5.1.1 锁住OS scheduler
-
-这是为了在恢复执行时只允许一个线程运行。
-
-scheduler锁定模式有多种，使用命令`set scheduler-locking <mode>`设置，`show scheduler-locking`获取。
-
-可用的模式有：
-
-- `off` 无锁定，任意线程可以任意运行。
-
-- `on` 只有当前线程可以运行，其他线程依然stop。
-
-- `step` 当单步执行时效果类似`on`，使用其他执行命令(如`continue`, `until`, `finish`)时类似`off`。(由于机器不支持此模式，未测试文档中的"单步执行"是不是指`step`和`next`命令)
-
-- `replay` (默认)在replay模式时类似于`on`，在record模式和正常执行时类似`off`。
-
-## 5.2 常用命令
-
-- `p $_thread`，打印当前线程号
-
-- `info threads`或者缩写为`i th`，查看线程信息
-
-- `thread [THREAD_NUM]`或者缩写为`t [THREAD_NUM]`，切换线程
-
-# 6. 方便变量(Convenience Variables)
-
-## 6.1 基本介绍
-
-- 形式为以`$`开头的名字(以`$`开头的数字不是)
-
-- 无固定类型，甚至可以是结构体或者数组
-
-## 6.2 赋值
-
-使用`set`命令，如`set $foo = *object_ptr`
-
-## 6.3 使用示例
-
-不断使用回车遍历数组：
-
-```gdb
-set $i = 0
-p arr[$i++]
-```
-
-# 7. 回退执行
-
-使用命令`record`，`reverse-next`，`reverse-step`，`reverse-continue`，`reverse-finish`等等
-
-但在支持AVX(Advanced Vector Extension)的现代CPU上`record`命令不能使用，因此GDB回退执行的功能很鸡肋
-
-glibc的string相关函数会使用AVX优化的版本，要想使用GDB的回退执行可能需要重新编译glibc或者修改动态链接器使它不要使用AVX版本的函数
-
-参考[stackoverflow](https://stackoverflow.com/questions/42451492/disable-avx-optimized-functions-in-glibc-ld-hwcap-mask-etc-ld-so-nohwcap-for/44468494#44468494)
-
-# 6. TUI(Text User Interface)
-
-## 6.1 GDB tui常用命令
-
-### 1. 启动和退出tui模式
-
-- 分别是`tui enable`(缩写为`tui e`)和`tui disable`(缩写为`tui d`)命令
-
-- 或者使用快捷键ctrl+x+a，按第一次进入，第二次退出
-
-### 2. ctrl+L 刷新屏幕
-
-在程序使用标准输出和标准错误打印时屏幕可能乱掉，可以使用ctrl+L进行刷新
-
-ctrl+L不会被记在命令历史里，下一次ENTER不会重复ctrl+L
-
-### 3. `info win`命令
-
-列出当前显示的所有窗口
-
-### 4. `focus`命令
-
-缩写为`fs`，改变焦点到不同窗口，使用方式`focus [WINDOW-NAME | next | prev]`
-
-### 5. 查看文档
-
-使用`help text-user-interface`查看tui相关所有命令
-
-## 6.2 CGDB
-
-CGDB是GDB的一个控制台前端(Console Frontend)，它还是使用GDB进行实际调试
-
-GDB的tui模式不支持源码窗口和命令窗口垂直分屏，因此使用CGDB
-
-### 6.2.1 使用
-
-#### 1. 启动
-
-在shell中输入`cgdb`启动程序
-
-调用方式类似GDB: 
-
-```bash
-cgdb [cgdb options] [--] [gdb options]
-```
-
-#### 2. 退出
-
-- 在GDB窗口输入`quit`或者ctrl+D
-
-- 在源代码窗口输入`:quit`
-
-#### 3. 调试
-
-CGDB的操作类似vim，按`ESC`键进入源代码窗口，按`i`进入GDB窗口
-
-#### 4. 垂直分屏
-
-源代码和命令窗口垂直分屏输入：
-
-`:set winsplitorientation=vertical`或者`:set wso=vertical`
-
-#### 5. `~/.cgdb/cgdbrc`文件
-
-类似于`!/.bashrc`文件，用于初始化cgdb，可将`:set wso=vertical`写入以默认垂直分屏
-
-### 6.2.2 资源
-
-- [官网](https://cgdb.github.io/)
-
-- [文档](https://cgdb.github.io/docs/cgdb-split.html)
-
-### 6.2.3 注意
-
-- 目前最新版为0.8.0，没有发正式版
-
-# 7. 其他
-
-## 7.1 获取目标文件的编译flags
+## 5.1 获取目标文件的编译flags
 
 为查看某个目标文件编译时是否启用了优化或者携带调试信息(debuginfo)
 
@@ -415,7 +280,11 @@ CGDB的操作类似vim，按`ESC`键进入源代码窗口，按`i`进入GDB窗�
 
 检查flags里是否有`-O`或者`-g`即可
 
-## 7.2 术语inferior
+## 5.2 查看复杂程序的编译flags
 
-inferior在GDB里基本等同于进程，它可以包含多个线程
+对于包含多个翻译单元的复杂程序，需要先从readelf的输出中找到指定的翻译单元，再去查看它的producer属性
+
+# 6. 调试器的不足
+
+调试器毕竟是对原程序的一种入侵，可能有不可避免的副作用(例如：如果一个线程因为断点而stop，另一个线程因为syscall而阻塞，那么这个syscall可能还没有真实执行完就会早熟地返回)，再加上GDB本身的使用也很复杂，所以总会有想不到的情况，遇到没见过的不熟悉的问题不要心慌，**要想其他办法绕过去**。再者说，技术细节其实并不重要也没人关心，重要的是**完成实际任务**和**与人打交道**。
 
