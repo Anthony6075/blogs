@@ -2,6 +2,7 @@
 title: Linux GDB Watchpoint
 categories:
 - computer_science
+- gdb
 tags:
 - linux
 - gdb

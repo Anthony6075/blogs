@@ -2,6 +2,7 @@
 title: Linux GDB TUI(Text User Interface)
 categories:
 - computer_science
+- gdb
 tags:
 - linux
 - gdb

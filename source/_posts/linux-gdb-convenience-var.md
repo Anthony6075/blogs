@@ -2,6 +2,7 @@
 title: Linux GDB Convenience Variables
 categories:
 - computer_science
+- gdb
 tags:
 - linux
 - gdb

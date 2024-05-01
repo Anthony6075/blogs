@@ -2,6 +2,7 @@
 title: Linux GDB 多线程调试
 categories:
 - computer_science
+- gdb
 tags:
 - linux
 - gdb

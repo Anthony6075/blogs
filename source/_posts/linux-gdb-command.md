@@ -2,6 +2,7 @@
 title: Linux GDB 常用命令
 categories:
 - computer_science
+- gdb
 tags:
 - linux
 - gdb
