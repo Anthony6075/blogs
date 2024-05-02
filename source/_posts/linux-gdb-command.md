@@ -108,11 +108,11 @@ gdb <executable_file_path> <coredump_file_path>
 
 #### 4. `next`
 
-缩写为`n`，step over，可跟一个数字参数`[N]`指定执行次数
+缩写为`n`，step over，(可跟一个数字参数`[N]`指定重复`next`的次数，但遇到断点还是会提前stop)
 
 #### 5. `step`
 
-缩写为`s`，step into，可跟一个数字参数`[N]`指定执行次数
+缩写为`s`，step into，(可跟一个数字参数`[N]`指定重复`step`的次数，但遇到断点还是会提前stop)
 
 #### 6. `print`
 
