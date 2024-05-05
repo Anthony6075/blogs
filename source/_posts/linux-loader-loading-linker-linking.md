@@ -2,12 +2,11 @@
 title: Linux加载器、加载、动态链接器与动态链接
 categories:
 - computer_science
+- linker
 tags:
 - linux
 - loader
-- loading
 - linker
-- linking
 ---
 
 # 1. 别名和对应的文件

@@ -2,13 +2,12 @@
 title: Linux ldd命令使用方法
 categories:
 - computer_science
+- linker
 tags:
 - linux
-- loader
-- loading
-- linker
-- linking
 - shell
+- loader
+- linker
 ---
 
 # 1. 作用

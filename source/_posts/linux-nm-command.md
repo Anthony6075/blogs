@@ -2,9 +2,11 @@
 title: Linux nm命令常见用法
 categories:
 - computer_science
+- linker
 tags:
 - linux
 - shell
+- linker
 ---
 
 # 1. nm命令

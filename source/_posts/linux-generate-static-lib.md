@@ -1,10 +1,12 @@
 ---
-title: Linux合并静态库
+title: Linux生成静态库
 categories:
 - computer_science
+- linker
 tags:
 - linux
 - shell
+- linker
 ---
 
 # 1. 使用`ar -M [ < merge.script ]`命令
@@ -14,12 +16,12 @@ tags:
 使用`create`传入输出的静态库文件名，`addlib`传入输入的静态库，`addmod`传入输入的目标文件，最后调用`save`和`end`。
 
 ```
-create libmerged.a
-addlib libfirst.a
-addlib libsecond.a
+create <libmerged.a>
+addlib <libfirst.a>
+addlib <libsecond.a>
 ...
-addmod object_first.o
-addmod object_second.o
+addmod <object_first.o>
+addmod <object_second.o>
 ...
 save
 end

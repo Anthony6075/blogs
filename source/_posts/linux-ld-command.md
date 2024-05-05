@@ -2,11 +2,11 @@
 title: Linux ld命令使用方法
 categories:
 - computer_science
+- linker
 tags:
 - linux
-- linker
-- linking
 - shell
+- linker
 ---
 
 # 1. ld命令: linux链接器
