@@ -768,6 +768,14 @@ hexo-generator-index@^3.0.0:
   dependencies:
     hexo-pagination "3.0.0"
 
+hexo-generator-search@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.npmmirror.com/hexo-generator-search/-/hexo-generator-search-2.4.3.tgz"
+  integrity sha512-Z5hfZq2g3np/Tgdp2q9HobfIvU6Pdz89tnTurc1IIq/vW0MHgDynk0Aiv6kvMtKWthnZ5l0iEMT3YLN35NdYwQ==
+  dependencies:
+    nunjucks "^3.0.1"
+    utils-merge "^1.0.0"
+
 hexo-generator-tag@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/hexo-generator-tag/-/hexo-generator-tag-2.0.0.tgz"
@@ -845,7 +853,7 @@ hexo-theme-landscape@^1.0.0:
   resolved "https://registry.npmmirror.com/hexo-theme-landscape/-/hexo-theme-landscape-1.0.0.tgz"
   integrity sha512-bWQJWMqQI78wWiJPQZq5pJBH20TM442ShCaHGRetuEgMraxH0OKxB3NTupJzNEkzEk8DV2yrdizkXdKN6i501A==
 
-hexo-util@^2.5.0, hexo-util@^2.7.0:
+hexo-util@^2.5.0:
   version "2.7.0"
   resolved "https://registry.npmmirror.com/hexo-util/-/hexo-util-2.7.0.tgz"
   integrity sha512-hQM3h34nhDg0bSe/Tg1lnpODvNkz7h2u0+lZGzlKL0Oufp+5KCAEUX9wal7/xC7ax3/cwEn8IuoU75kNpZLpJQ==
@@ -859,20 +867,21 @@ hexo-util@^2.5.0, hexo-util@^2.7.0:
     prismjs "^1.17.1"
     strip-indent "^3.0.0"
 
-hexo-util@^3.0.1:
-  version "3.2.0"
-  resolved "https://registry.npmmirror.com/hexo-util/-/hexo-util-3.2.0.tgz"
-  integrity sha512-iM2eS8P88IUpcgiU2szx584bwhXzjzLLqED6WwDk55wYQZrQh/sni/UJwmoW4pxpgubbISIUPXr4LjwPyJuYzA==
+hexo-util@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.npmmirror.com/hexo-util/-/hexo-util-2.7.0.tgz"
+  integrity sha512-hQM3h34nhDg0bSe/Tg1lnpODvNkz7h2u0+lZGzlKL0Oufp+5KCAEUX9wal7/xC7ax3/cwEn8IuoU75kNpZLpJQ==
   dependencies:
-    camel-case "^4.1.2"
-    cross-spawn "^7.0.3"
+    bluebird "^3.5.2"
+    camel-case "^4.0.0"
+    cross-spawn "^7.0.0"
     deepmerge "^4.2.2"
-    highlight.js "^11.6.0"
-    htmlparser2 "^9.0.0"
-    prismjs "^1.29.0"
+    highlight.js "^11.0.1"
+    htmlparser2 "^7.0.0"
+    prismjs "^1.17.1"
     strip-indent "^3.0.0"
 
-hexo-util@^3.1.0:
+hexo-util@^3.0.1, hexo-util@^3.1.0:
   version "3.2.0"
   resolved "https://registry.npmmirror.com/hexo-util/-/hexo-util-3.2.0.tgz"
   integrity sha512-iM2eS8P88IUpcgiU2szx584bwhXzjzLLqED6WwDk55wYQZrQh/sni/UJwmoW4pxpgubbISIUPXr4LjwPyJuYzA==
@@ -1293,7 +1302,7 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-nunjucks@^3.2.3:
+nunjucks@^3.0.1, nunjucks@^3.2.3:
   version "3.2.4"
   resolved "https://registry.npmmirror.com/nunjucks/-/nunjucks-3.2.4.tgz"
   integrity sha512-26XRV6BhkgK0VOxfbU5cQI+ICFUtMLixv1noZn1tGU38kQH5A5nmmbk/O45xdyBhD1esk47nKrY0mvQpZIhRjQ==
@@ -1815,7 +1824,7 @@ util-deprecate@^1.0.1:
   resolved "https://registry.npmmirror.com/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-utils-merge@1.0.1:
+utils-merge@^1.0.0, utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.npmmirror.com/utils-merge/-/utils-merge-1.0.1.tgz"
   integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
