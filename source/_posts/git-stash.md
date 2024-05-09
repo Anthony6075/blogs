@@ -2,6 +2,7 @@
 title: git stash命令用法
 categories:
 - computer_science
+- git
 tags:
 - git
 ---
