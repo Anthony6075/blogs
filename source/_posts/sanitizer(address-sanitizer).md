@@ -157,7 +157,25 @@ freed by thread T0 here:
 ...
 ```
 
-# 7. 可以发现的内存bug包括
+# 7. 可以发现的内存bug
+
+可以发现的内存bug包括：
+
+1. heap-use-after-free
+
+2. heap-buffer-overflow
+
+3. stack-buffer-overflow
+
+4. global-buffer-overflow
+
+5. stack-use-after-return
+
+6. stack-use-after-scope
+
+7. initialization-order-fiasco
+
+8. memory leaks
 
 ## 7.1 heap-use-after-free
 
@@ -241,6 +259,10 @@ int main(int argc, char **argv) {
 默认情况下asan不发现这类stack-use-after-return错误，但它仍可能偶尔发现此类错误却报告为stack-buffer-overflow。
 
 使用`ASAN_OPTIONS=detect_stack_use_after_return=1`使asan发现此类错误。
+
+发现stack-use-after-return在CPU和RAM消耗上比较昂贵，官方benchmark表明最多可造成2x slowdown。
+
+注意：发现stack-use-after-return需要在heap上分配fake stack，因此可能对low-level code带来兼容性问题，比如对函数的本地变量取地址可能发现它不在栈上。
 
 ## 7.6 stack-use-after-scope
 

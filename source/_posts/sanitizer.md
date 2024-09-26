@@ -22,11 +22,15 @@ sanitizer n. 消毒剂
 
 用于发现C/C++程序中的内存错误，比如use-after-free和{heap,stack,global}-buffer overflow。
 
-## 2.2 ThreadSanitizer
+## 2.3 LeakSanitizer
+
+用于发现内存泄漏，已被集成到AddressSanitizer中。
+
+## 2.3 ThreadSanitizer
 
 用于发现C/C++和Go程序中的数据竞争(data race)。
 
-## 2.3 MemorySanitizer
+## 2.4 MemorySanitizer
 
 用于发现未初始化内存的使用。
 
@@ -64,16 +68,6 @@ int main() {
 
 asan可以发现a.cc中的`stack-use-after-scope`，却不能发现b.cc中同样的错误。
 
-
-
 # 4. 参考文献
 
 - https://github.com/google/sanitizers/wiki
-
-# todo
-
-- https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterReturn
-
-- https://github.com/google/sanitizers/wiki/AddressSanitizerAlgorithm
-
-- https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope
