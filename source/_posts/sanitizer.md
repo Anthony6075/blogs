@@ -38,36 +38,6 @@ sanitizer n. 消毒剂
 
 并不是一定能检测出所有的bug ! ! !
 
-例如：
-
-a.cc内容如下：
-
-```
-int *p;
-int main() {
-  {
-    int x;
-    p = &x;
-  }
-  *p = 1;
-}
-```
-
-b.cc内容如下：
-
-```
-int main() {
-  int *p;
-  {
-    int x;
-    p = &x;
-  }
-  *p = 1;
-}
-```
-
-asan可以发现a.cc中的`stack-use-after-scope`，却不能发现b.cc中同样的错误。
-
 # 4. 参考文献
 
 - https://github.com/google/sanitizers/wiki
