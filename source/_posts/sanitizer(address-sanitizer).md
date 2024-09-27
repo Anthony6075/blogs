@@ -402,7 +402,21 @@ src:path/to/bad/files/*=init
 
 内存泄漏。
 
-见Leak Sanitizer。
+例如：
+
+```
+#include <stdlib.h>
+
+void *p;
+
+int main() {
+  p = malloc(7);
+  p = 0; // The memory is leaked here.
+  return 0;
+}
+```
+
+asan已集成[Leak Sanitizer](https://anthony6075.github.io/2024/09/23/sanitizer(leak-sanitizer)/)进行内存泄漏检查。
 
 ## 7.9 总结
 

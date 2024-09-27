@@ -22,7 +22,7 @@ sanitizer n. 消毒剂
 
 用于发现C/C++程序中的内存错误，比如use-after-free和{heap,stack,global}-buffer overflow。
 
-## 2.3 LeakSanitizer
+## 2.2 LeakSanitizer
 
 用于发现内存泄漏，已被集成到AddressSanitizer中。
 

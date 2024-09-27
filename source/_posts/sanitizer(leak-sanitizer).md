@@ -84,7 +84,3 @@ $ clang -fsanitize=leak -g a.c -o a && ./a
 # 5. 参考文档
 
 - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
-
-# todo
-
-- https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizerDesignDocument
