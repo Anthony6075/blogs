@@ -15,6 +15,8 @@ AddressSantizer简称为asan。
 
 用于发现C/C++程序中的内存错误。
 
+asan运行很快，它给程序带来的平均slowdown大约2x。
+
 asan包括两部分：
 
 1. 静态插桩模块(compiler instrumentation module, 目前实现是一个LLVM pass)
@@ -63,6 +65,19 @@ $ ./use-after-free
 
 ```
 $ clang -fsanitize=address -g a.c && ./a.out
+```
+
+## 2.4 报告第一个错误后继续运行
+
+默认asan发现第一个错误后退出程序。
+
+若要报告第一个错误后继续运行，使用编译时flag`-fsanitize-recover=address`和运行时flag`ASAN_OPTIONS=halt_on_error=0`。
+
+例如使用如下编译运行命令：
+
+```
+$ clang -fsanitize=address -fno-omit-frame-pointer -fsanitize-recover=address -g a.c
+$ ASAN_OPTIONS=halt_on_error=0 ./a.out
 ```
 
 # 3. 编译时flags和运行时flags
