@@ -36,8 +36,12 @@ sanitizer n. 消毒剂
 
 # 3. 注意
 
-并不是一定能检测出所有的bug ! ! !
+- 并不是一定能检测出所有的bug ! ! !
+
+- asan/tsan/msan在同一个程序中最多使用一个
 
 # 4. 参考文献
 
 - https://github.com/google/sanitizers/wiki
+
+- https://clang.llvm.org/docs/UsersManual.html#cmdoption-f-no-sanitize
