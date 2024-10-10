@@ -17,6 +17,10 @@ msan是比特精度的。
 
 msan的功能是Valgrind功能的子集，但运行速度更快。
 
+msan使用stderr打印错误报告
+
+msan发现错误即报告，而不是等到程序即将结束时统一报告
+
 msan发现如下bug并报告warning:
 
 1. 在条件分支中使用未初始化的值。
@@ -29,13 +33,11 @@ msan发现如下bug并报告warning:
 
 # 2. 使用方法
 
+## 2.1 常用使用方法
+
 - 使用clang编译器
 
 - 使用编译选项`-fsanitize=memory -fPIE -pie -fno-omit-frame-pointer -g`
-
-- 使用stderr打印错误报告
-
-- 发现错误即报告，而不是等到程序即将结束时统一报告
 
 - 默认错误报告是fatal的，即发现并报告第一个错误后就退出，如需发现多个错误需使用编译选项`-fsanitize-recover=memory`
 
@@ -79,6 +81,14 @@ $ ./a.out
 
 SUMMARY: MemorySanitizer: use-of-uninitialized-value /root/msan/a.cc:7:7 in main
 MemorySanitizer: 1 warnings reported.
+```
+
+## 2.2 简单使用方法
+
+仅使用`-fsanitize=memory`和`-g`两个编译选项。
+
+```
+$ clang++ -fsanitize=memory -g a.cc && ./a.out
 ```
 
 # 3. 追踪内存分配位置
