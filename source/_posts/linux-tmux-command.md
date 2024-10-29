@@ -36,3 +36,7 @@ tags:
 ## 2.5 重命名会话
 
 `tmux rename-session -t <old-session-name> <new-session-name>`
+
+## 2.6 查看会话
+
+`tmux ls`
