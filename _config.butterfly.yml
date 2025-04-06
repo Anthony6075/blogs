@@ -40,11 +40,11 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/vscode.jpg
+favicon: /img/rain.jpg
 
 # Avatar (頭像)
 avatar:
-  img: /img/vscode.jpg
+  img: /img/rain.jpg
   effect: false
 
 # Disable all banner image
