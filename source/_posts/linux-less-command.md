@@ -1,5 +1,6 @@
 ---
 title: Linux less命令常见用法
+date: 2024-10-06 23:18:38
 categories:
 - computer_science
 tags:

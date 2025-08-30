@@ -1,5 +1,6 @@
 ---
 title: Linux GDB 常用命令
+date: 2024-11-26 19:22:59
 categories:
 - computer_science
 - gdb

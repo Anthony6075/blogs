@@ -1,5 +1,6 @@
 ---
 title: Linux GDB 多线程调试
+date: 2024-05-02 07:12:55
 categories:
 - computer_science
 - gdb

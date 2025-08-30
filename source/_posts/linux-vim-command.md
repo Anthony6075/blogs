@@ -1,5 +1,6 @@
 ---
 title: Linux vim常用命令
+date: 2024-05-08 08:59:02
 categories:
 - computer_science
 tags:

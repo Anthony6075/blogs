@@ -1,5 +1,6 @@
 ---
 title: Linux tmux命令常见用法
+date: 2024-10-29 17:31:54
 categories:
 - computer_science
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Linux生成动态库
+date: 2024-05-05 22:07:19
 categories:
 - computer_science
 - linker

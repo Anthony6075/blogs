@@ -1,5 +1,6 @@
 ---
 title: memory sanitizer
+date: 2024-10-10 16:00:05
 categories:
 - computer_science
 - sanitizer

@@ -1,5 +1,6 @@
 ---
 title: Bash job control
+date: 2024-06-03 16:09:06
 categories:
 - computer_science
 tags:

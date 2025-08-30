@@ -1,5 +1,6 @@
 ---
 title: Linux GDB Convenience Variables
+date: 2024-05-01 19:43:35
 categories:
 - computer_science
 - gdb

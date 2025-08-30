@@ -1,5 +1,6 @@
 ---
 title: Linux GDB Watchpoint
+date: 2024-05-02 07:15:59
 categories:
 - computer_science
 - gdb

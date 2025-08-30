@@ -1,5 +1,6 @@
 ---
 title: Linux GDB反向执行
+date: 2024-05-02 19:31:03
 categories:
 - computer_science
 - gdb

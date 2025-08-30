@@ -1,5 +1,6 @@
 ---
 title: Linux ldd命令使用方法
+date: 2024-05-05 15:36:13
 categories:
 - computer_science
 - linker

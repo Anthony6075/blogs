@@ -1,5 +1,6 @@
 ---
 title: Linux GDB TUI(Text User Interface)
+date: 2024-05-01 19:43:10
 categories:
 - computer_science
 - gdb

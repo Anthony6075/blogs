@@ -1,5 +1,6 @@
 ---
 title: Linux生成静态库
+date: 2024-05-05 15:59:28
 categories:
 - computer_science
 - linker

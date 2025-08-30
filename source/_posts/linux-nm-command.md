@@ -1,5 +1,6 @@
 ---
 title: Linux nm命令常见用法
+date: 2024-05-05 15:37:49
 categories:
 - computer_science
 - linker
