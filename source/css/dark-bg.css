@@ -1,0 +1,7 @@
+[data-theme='dark'] #web_bg {
+  background-image: url(/img/dark.png) !important;
+}
+
+[data-theme='dark'] #web_bg:before {
+  background-color: transparent !important;
+}
